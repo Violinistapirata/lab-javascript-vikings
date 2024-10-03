@@ -52,8 +52,8 @@ class War {
     constructor () {
         this.vikingArmy = [];
         this.saxonArmy = [];
-        this.randomSaxon = this.pickRandomSoldier(this.saxonArmy)
-        this.randomViking = this.pickRandomSoldier(this.vikingArmy)
+        this.randomSaxon
+        this.randomViking
     }
 
     addViking (viking) {
@@ -71,6 +71,9 @@ class War {
     }
 
     genericAttack(attacker) {
+
+        this.randomSaxon = this.pickRandomSoldier(this.saxonArmy)
+        this.randomViking = this.pickRandomSoldier(this.vikingArmy)
 
         const currentSaxon = this.saxonArmy[this.randomSaxon];
         const currentViking = this.vikingArmy[this.randomViking];
@@ -96,6 +99,10 @@ class War {
     }
 
     vikingAttack () {
+
+        this.randomSaxon = this.pickRandomSoldier(this.saxonArmy)
+        this.randomViking = this.pickRandomSoldier(this.vikingArmy)
+
         const currentSaxon = this.saxonArmy[this.randomSaxon];
         const currentViking = this.vikingArmy[this.randomViking];
         currentSaxon.receiveDamage(currentViking.strength);
@@ -108,6 +115,10 @@ class War {
     }
 
     saxonAttack () {
+
+        this.randomSaxon = this.pickRandomSoldier(this.saxonArmy)
+        this.randomViking = this.pickRandomSoldier(this.vikingArmy)
+
         const currentSaxon = this.saxonArmy[this.randomSaxon];
         const currentViking = this.vikingArmy[this.randomViking];
         currentViking.receiveDamage(currentSaxon.strength);
