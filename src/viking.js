@@ -70,6 +70,31 @@ class War {
         return randomIndex;
     }
 
+    genericAttack(attacker) {
+
+        const currentSaxon = this.saxonArmy[this.randomSaxon];
+        const currentViking = this.vikingArmy[this.randomViking];
+
+        const currentSaxonIndex = this.saxonArmy.indexOf(currentSaxon);
+        const currentVikingIndex = this.vikingArmy.indexOf(currentViking);
+        
+        if (attacker === "viking") {
+            currentSaxon.receiveDamage(currentViking.strength);
+            if (currentSaxon.health <= 0) {
+                this.saxonArmy.splice(currentSaxonIndex, 1);
+                return `A Saxon has died in combat`
+            }
+            return `A Saxon has received ${currentViking.strength} points of damage`
+        } else if (attacker === "saxon") {
+            currentViking.receiveDamage(currentSaxon.strength);
+            if (currentViking.health <= 0) {
+                this.vikingArmy.splice(currentVikingIndex, 1);
+                return `${currentViking.name} has died in act of combat`
+            }
+            return `${currentViking.name} has received ${currentSaxon.strength} points of damage`
+        }
+    }
+
     vikingAttack () {
         const currentSaxon = this.saxonArmy[this.randomSaxon];
         const currentViking = this.vikingArmy[this.randomViking];
@@ -104,29 +129,3 @@ class War {
         }
     }
 }
-
-
-/* const newArmy = ["fulanito", "menganito", "pepito"];
-
-let viking, saxon, war;
-
-function generateViking() {
-    const name = 'Harald';
-    const strength = 150;
-    const health = 300;
-    return new Viking(name, health, strength);
-}
-
-function generateSaxon() {
-    const health = 60;
-    const strength = 25;
-    return new Saxon(health, strength);
-}
-
-beforeEach(() => {
-    viking = generateViking();
-    saxon = generateSaxon();
-    war = new War();
-});
-
-console.log(pickRandomSoldier(newArmy)); */
