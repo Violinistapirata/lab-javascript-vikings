@@ -81,6 +81,18 @@ class War {
         }
         return `A Saxon has received ${currentViking.strength} points of damage`
     }
+
+    saxonAttack () {
+        const currentSaxon = this.saxonArmy[this.randomSaxon];
+        const currentViking = this.vikingArmy[this.randomViking];
+        currentViking.receiveDamage(currentSaxon.strength);
+        const currentVikingIndex = this.vikingArmy.indexOf(currentViking);
+        if (currentViking.health <= 0) {
+            this.vikingArmy.splice(currentVikingIndex, 1);
+            return `${currentViking.name} has died in act of combat`
+        }
+        return `${currentViking.name} has received ${currentSaxon.strength} points of damage`
+    }
 }
 
 
